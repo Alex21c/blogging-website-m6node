@@ -1,0 +1,35 @@
+{
+  "name": "blogging-website-m6node",
+  "version": "1.0.0",
+  "description": "created a RESTful API for a blog application. The API will handle user authentication, CRUD operations for posts, and CRUD operations for comments. ",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex21c/blogging-website-m6node"
+  },
+  "keywords": [
+    "blog website",
+    "restful api",
+    "mern stack",
+    "mongo db",
+    "expressJS",
+    "nodeJS",
+    "alex21c"
+  ],
+  "author": "Abhishek kumar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alex21c/blogging-website-m6node/issues"
+  },
+  "homepage": "https://github.com/Alex21c/blogging-website-m6node#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1"
+  }
+}
