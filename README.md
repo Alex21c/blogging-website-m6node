@@ -17,7 +17,7 @@ npm run start
 ### Purpose: 
 Create a new user.
 ### Request Body:
-```
+```javascript
 json
 { "email": "user@example.com", "password": "password123" }
 
@@ -77,7 +77,7 @@ Update a post by ID.
 ### Headers: 
 Requires JWT token.
 ### Request Body:
-```
+```javascript
 json
 { "title": "Updated Post Title", "content": "Updated Post Content" }
 ```
@@ -98,7 +98,7 @@ Confirmation message.
 ### Headers: 
 Requires JWT token.
 ### Request Body:
-```
+```javascript
 json
 { "content": "Comment Content" }
 ```
@@ -111,7 +111,7 @@ json
 ### Headers:
  Requires JWT token.
 ### Request Body:
-```
+```javascript
 json
 { "content": "Updated Comment Content" }
 ```
