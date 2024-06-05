@@ -1,4 +1,4 @@
-# mlcToDoPrjTitle
+# Blogging Website (Module #6, MERN Stack)
 ![](thumbnail.png)
 
 ## Objectives
