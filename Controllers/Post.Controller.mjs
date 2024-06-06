@@ -1,3 +1,5 @@
+import PostModel from "../Models/Post.Model.mjs";
+import CustomError from "../Utils/CustomError.mjs"
 const getAllThePosts = (req, res, next)=>{
   res.json({
     success: true,
@@ -6,10 +8,19 @@ const getAllThePosts = (req, res, next)=>{
 };
 
 const createANewPost = (req, res, next)=>{
-  res.json({
-    success: true,
-    message: "req received createANewPost"
-  })
+  try {
+      
+    req.body.author = req.user._id;
+    console.log(req.body);
+  
+    res.json({
+      success: true,
+      message: "req received createANewPost"
+    })
+  } catch (error) {
+    
+    next(new CustomError(500, 'Failed to Create new post! (' + error.message +")"))
+  }
 };
 const getAPost = (req, res, next)=>{
   res.json({
