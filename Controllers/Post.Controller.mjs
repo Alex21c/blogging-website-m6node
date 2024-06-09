@@ -1,64 +1,70 @@
 import PostModel from "../Models/Post.Model.mjs";
-import CustomError from "../Utils/CustomError.mjs"
-const getAllThePosts = (req, res, next)=>{
+import CustomError from "../Utils/CustomError.mjs";
+const getAllThePosts = (req, res, next) => {
   res.json({
     success: true,
-    message: "req received getAllThePosts"
-  })
+    message: "req received getAllThePosts",
+  });
 };
 
-const createANewPost = (req, res, next)=>{
+const createANewPost = (req, res, next) => {
   try {
-      
     req.body.author = req.user._id;
     console.log(req.body);
-  
-    res.json({
+    const doc = new PostModel(req.body);
+    doc.save();
+    res.status(201).json({
       success: true,
-      message: "req received createANewPost"
-    })
+      message: "req received createANewPost",
+      postID: doc.id,
+    });
   } catch (error) {
-    
-    next(new CustomError(500, 'Failed to Create new post! (' + error.message +")"))
+    next(
+      new CustomError(500, "Failed to Create new post! (" + error.message + ")")
+    );
   }
 };
-const getAPost = (req, res, next)=>{
+const getAPost = (req, res, next) => {
+  // extracting id from params
+  console.log(req);
+
+  // await PostModel.findById()
   res.json({
     success: true,
-    message: "req received getSinglePost"
-  })
+    message: "req received getSinglePost",
+  });
 };
-const updateAPost = (req, res, next)=>{
+const updateAPost = (req, res, next) => {
   res.json({
     success: true,
-    message: "req received updateSinglePost"
-  })
+    message: "req received updateSinglePost",
+  });
 };
-const deleteAPost = (req, res, next)=>{
+const deleteAPost = (req, res, next) => {
   res.json({
     success: true,
-    message: "req received deleteSinglePost"
-  })
+    message: "req received deleteSinglePost",
+  });
 };
 
 // Comments Specific
-const createAComment = (req, res, next)=>{
+const createAComment = (req, res, next) => {
   res.json({
     success: true,
-    message: "req received createASingleComment"
-  })
+    message: "req received createASingleComment",
+  });
 };
-const updateAComment = (req, res, next)=>{
+const updateAComment = (req, res, next) => {
   res.json({
     success: true,
-    message: "req received updateASingleComment"
-  })
+    message: "req received updateASingleComment",
+  });
 };
-const deleteAComment = (req, res, next)=>{
+const deleteAComment = (req, res, next) => {
   res.json({
     success: true,
-    message: "req received deleteASingleComment"
-  })
+    message: "req received deleteASingleComment",
+  });
 };
 
 const PostController = {
@@ -69,8 +75,7 @@ const PostController = {
   deleteAPost,
   createAComment,
   updateAComment,
-  deleteAComment
+  deleteAComment,
 };
-
 
 export default PostController;
