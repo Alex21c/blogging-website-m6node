@@ -1,3 +1,4 @@
+import CommentModel from "../Models/Comment.Model.mjs";
 import PostModel from "../Models/Post.Model.mjs";
 import CustomError from "../Utils/CustomError.mjs";
 const getAllThePosts = (req, res, next) => {
@@ -24,47 +25,140 @@ const createANewPost = (req, res, next) => {
     );
   }
 };
-const getAPost = (req, res, next) => {
+const getAPost = async (req, res, next) => {
   // extracting id from params
-  console.log(req);
+  const { postID } = req.params;
+  if (!postID) {
+    next(new CustomError(200, "postID not provided in params!"));
+    return;
+  }
+
+  // fetching doc
+  const doc = await PostModel.findById(postID);
+  // console.log(doc);
 
   // await PostModel.findById()
   res.json({
     success: true,
-    message: "req received getSinglePost",
+    data: doc,
   });
 };
-const updateAPost = (req, res, next) => {
+const updateAPost = async (req, res, next) => {
+  // extracting id from params
+  const { postID } = req.params;
+  if (!postID) {
+    next(new CustomError(200, "postID not provided in params!"));
+    return;
+  }
+  // fetching req body
+  const reqBody = req.body;
+  // console.log(reqBody);
+
+  // fetching doc
+  const doc = await PostModel.findByIdAndUpdate(postID, reqBody);
+
+  // console.log(doc);
+
+  // await PostModel.findById()
   res.json({
     success: true,
-    message: "req received updateSinglePost",
+    data: "Updated Successfully !",
   });
 };
-const deleteAPost = (req, res, next) => {
+const deleteAPost = async (req, res, next) => {
+  // extracting id from params
+  const { postID } = req.params;
+  if (!postID) {
+    next(new CustomError(200, "postID not provided in params!"));
+    return;
+  }
+
+  await PostModel.findByIdAndDelete(postID);
+
   res.json({
     success: true,
-    message: "req received deleteSinglePost",
+    message: "post deleted Successfully !",
   });
 };
 
 // Comments Specific
-const createAComment = (req, res, next) => {
-  res.json({
-    success: true,
-    message: "req received createASingleComment",
-  });
+const createAComment = async (req, res, next) => {
+  try {
+    // extracting id from params
+    const { postID } = req.params;
+    if (!postID) {
+      next(new CustomError(200, "postID not provided in params!"));
+      return;
+    }
+    req.body.author = req.user._id;
+    const reqBody = req.body;
+
+    // create a comment doc
+    const commentDoc = new CommentModel(reqBody);
+    commentDoc.save();
+    // add its id to the post comments array
+    const post = await PostModel.findById(postID);
+    post.comments.push(commentDoc._id);
+    post.save();
+    console.log(post);
+
+    res.json({
+      success: true,
+      message: "Comment saved Successfully !",
+    });
+  } catch (error) {
+    console.log(error.message);
+    next(error);
+  }
 };
-const updateAComment = (req, res, next) => {
-  res.json({
-    success: true,
-    message: "req received updateASingleComment",
-  });
+const updateAComment = async (req, res, next) => {
+  try {
+    // comment id from params
+    const { commentID } = req.params;
+    if (!commentID) {
+      next(new CustomError(200, "CommentID not provided in params!"));
+      return;
+    }
+    // find the comment and update it
+    await CommentModel.findByIdAndUpdate(commentID, req.body);
+
+    res.json({
+      success: true,
+      message: "Comment Updated Successfully !",
+    });
+  } catch (error) {
+    next(error);
+  }
 };
-const deleteAComment = (req, res, next) => {
-  res.json({
-    success: true,
-    message: "req received deleteASingleComment",
-  });
+const deleteAComment = async (req, res, next) => {
+  try {
+    // extracting ids from params
+    const { postID } = req.params;
+    if (!postID) {
+      next(new CustomError(200, "postID not provided in params!"));
+      return;
+    }
+    const { commentID } = req.params;
+    if (!commentID) {
+      next(new CustomError(200, "CommentID not provided in params!"));
+      return;
+    }
+
+    // first find the comment and delete it
+    await CommentModel.findByIdAndDelete(commentID);
+
+    // then find the post, and remove comment id from it
+    const post = await PostModel.findById(postID);
+    post.comments = post.comments.filter((ID) => commentID != ID);
+    post.save();
+
+    res.json({
+      success: true,
+      message: "Comment Deleted Successfully !",
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 const PostController = {
