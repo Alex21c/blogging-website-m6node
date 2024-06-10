@@ -12,7 +12,7 @@ PostRoutes.post(
   PostInputValidationMiddleware,
   PostController.createANewPost
 );
-PostRoutes.get("/get-single-post/:postID", PostController.getAPost);
+PostRoutes.get("/get-single-post/:postID", passport.authenticate("jwt", { session: false }),PostController.getAPost);
 PostRoutes.put(
   "/update-single-post/:postID",
   passport.authenticate("jwt", { session: false }),
