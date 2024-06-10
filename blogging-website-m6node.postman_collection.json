@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "071b954a-a569-4ba1-8503-d75aa92901af",
+		"name": "blogging-website-m6node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32540147"
+	},
+	"item": [
+		{
+			"name": "localhost",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "sign-up",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"admin\",\r\n    \"lastName\": \"\",\r\n    \"email\": \"admin@alex21c.com\",\r\n    \"password\": \"admin123\" \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/user/sign-up",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"user",
+										"sign-up"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@alex21c.com\",\r\n    \"password\":\"admin123\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/user/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/user/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"user",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "Post",
+							"item": [
+								{
+									"name": "get-all-the-posts",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:4000/post/get-all-the-posts",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"post",
+												"get-all-the-posts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create-a-new-post",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYxOGE2YmZhZDNiZjc4NzFjNmUzZDYiLCJpYXQiOjE3MTc5MzE2MzcsImV4cCI6MTcxODEwNDQzN30.nmmVo5onYhDkeoETliluGtbY8uituhekCHEH0NSZVQ8"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n   \"title\": \"how to achieve financial freedom before age 40 ! (post 3)\",\r\n   \"body\": \"I'm having a vision of achieving financial freedom and here is my plan:\\n I will upskill myself by learning MERN stack & DSA, and then get job as Full Stack MERN Developer getting around ₹12LPA, then for the next 10 Years i will keep that money invested in Stock Market, Gold & Silver, and after 10 years i should have around ₹1 Crore, which shall be enough to get 1% return/month (₹1 Lakh/month) from stock market, and i will be financially free, and now can focus on my vision board of acquiring more income generating assets and having Private Limited companies, World Tour!\",\r\n   \"keywords\": [\r\n        \"financial freedom\",\r\n        \"blog\",\r\n        \"article by alex21c\"\r\n   ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/post/create-a-new-post",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"post",
+												"create-a-new-post"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get-single-post/:postID",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:4000/post/get-single-post/66659723dda77196802251ca",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"post",
+												"get-single-post",
+												"66659723dda77196802251ca"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update-single-post/:postID",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYxOGE2YmZhZDNiZjc4NzFjNmUzZDYiLCJpYXQiOjE3MTc5MzE2MzcsImV4cCI6MTcxODEwNDQzN30.nmmVo5onYhDkeoETliluGtbY8uituhekCHEH0NSZVQ8"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n   \"title\": \"UPDATED-TITLE : how to achieve financial freedom before age 40 ! (post 3)\",\r\n   \"body\": \"UPDATED-BODY: I'm having a vision of achieving financial freedom and here is my plan:\\n I will upskill myself by learning MERN stack & DSA, and then get job as Full Stack MERN Developer getting around ₹12LPA, then for the next 10 Years i will keep that money invested in Stock Market, Gold & Silver, and after 10 years i should have around ₹1 Crore, which shall be enough to get 1% return/month (₹1 Lakh/month) from stock market, and i will be financially free, and now can focus on my vision board of acquiring more income generating assets and having Private Limited companies, World Tour!\",\r\n   \"keywords\": [\r\n        \"UPDATED-KEYWORD\",\r\n        \"financial freedom\",\r\n        \"blog\",\r\n        \"article by alex21c\"\r\n   ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/post/update-single-post/666695367e9c480d34b877b9",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"post",
+												"update-single-post",
+												"666695367e9c480d34b877b9"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete-single-post/:postID Copy",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYxOGE2YmZhZDNiZjc4NzFjNmUzZDYiLCJpYXQiOjE3MTc5MzE2MzcsImV4cCI6MTcxODEwNDQzN30.nmmVo5onYhDkeoETliluGtbY8uituhekCHEH0NSZVQ8"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:4000/post/delete-single-post/666695317e9c480d34b877b8",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"post",
+												"delete-single-post",
+												"666695317e9c480d34b877b8"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Comment",
+							"item": [
+								{
+									"name": "create-a-new-comment/:postID",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYxOGE2YmZhZDNiZjc4NzFjNmUzZDYiLCJpYXQiOjE3MTc5MzE2MzcsImV4cCI6MTcxODEwNDQzN30.nmmVo5onYhDkeoETliluGtbY8uituhekCHEH0NSZVQ8"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"body\": \"hmm, good luck ! (#3)\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/post/create-a-new-comment/666695317e9c480d34b877b8",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"post",
+												"create-a-new-comment",
+												"666695317e9c480d34b877b8"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update-a-comment/:postID/:commentID",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYxOGE2YmZhZDNiZjc4NzFjNmUzZDYiLCJpYXQiOjE3MTc5MzE2MzcsImV4cCI6MTcxODEwNDQzN30.nmmVo5onYhDkeoETliluGtbY8uituhekCHEH0NSZVQ8"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"body\": \"UPDATED-hmm, good luck !\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/post/update-a-comment/66669a6a7d4543668b39636f",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"post",
+												"update-a-comment",
+												"66669a6a7d4543668b39636f"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete-a-comment/:postID/:commentID Copy",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjYxOGE2YmZhZDNiZjc4NzFjNmUzZDYiLCJpYXQiOjE3MTc5MzE2MzcsImV4cCI6MTcxODEwNDQzN30.nmmVo5onYhDkeoETliluGtbY8uituhekCHEH0NSZVQ8"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:4000/post/delete-a-comment/666695317e9c480d34b877b8/66669a6a7d4543668b39636f",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"post",
+												"delete-a-comment",
+												"666695317e9c480d34b877b8",
+												"66669a6a7d4543668b39636f"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
